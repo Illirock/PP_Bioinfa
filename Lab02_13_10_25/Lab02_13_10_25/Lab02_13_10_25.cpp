@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include <random>
 using namespace std;
 
 int main()
@@ -25,28 +26,28 @@ int main()
 	*/
 	// Zadanie 2
 	/*
-	int fahr, celsius; //zmienne typu int 
-	int start, limit, krok; //zmienne typu int 
+	int fahr, celsius; //zmienne typu int
+	int start, limit, krok; //zmienne typu int
 
-	start = 0; //przypisz 0 do start 
-	limit = 200; //przypisz 200 do limit 
-	krok = 20; //przypisz 20 do krok 
+	start = 0; //przypisz 0 do start
+	limit = 200; //przypisz 200 do limit
+	krok = 20; //przypisz 20 do krok
 
-	fahr = start; //przypisz wartosc start do zmiennej fahr, czyli fahr = 0 
-	while (fahr <= limit) { //wykonuj petle dopoki wartosc fahr jest <= od zmiennej limit 
-		celsius = 5 * (fahr - 32) / 9; //oblicz stopnie C i przypisz wynik do celsius 
+	fahr = start; //przypisz wartosc start do zmiennej fahr, czyli fahr = 0
+	while (fahr <= limit) { //wykonuj petle dopoki wartosc fahr jest <= od zmiennej limit
+		celsius = 5 * (fahr - 32) / 9; //oblicz stopnie C i przypisz wynik do celsius
 		cout << fahr << "\t" << celsius << endl; //wypisz zmienne na ekran
 		fahr = fahr + krok; //zwieksz wartosc zmiennej fahr o wartosc zmiennej krok
 	}
 	*/
 	// Zadanie 3
 	/*
-	int fahr, celsius; //zmienne typu int 
-	int start, limit, krok; //zmienne typu int 
+	int fahr, celsius; //zmienne typu int
+	int start, limit, krok; //zmienne typu int
 
-	start = 0; //przypisz 0 do start 
-	limit = 200; //przypisz 200 do limit 
-	krok = 20; //przypisz 20 do krok 
+	start = 0; //przypisz 0 do start
+	limit = 200; //przypisz 200 do limit
+	krok = 20; //przypisz 20 do krok
 
 	for (fahr = start; fahr <= limit; fahr = fahr + krok) {
 		float celsius = (5.0 / 9.0) * (fahr - 32.0);
@@ -68,8 +69,8 @@ int main()
 	*/
 	// Zadanie 6
 	/*
-	float fahr, celsius; 
-	int start, limit, krok; 
+	float fahr, celsius;
+	int start, limit, krok;
 	bool validAnswer = true;
 	while (validAnswer)
 	{
@@ -163,4 +164,55 @@ int main()
 	}
 	*/
 	// Zadanie 12
-}	
+	//int n;
+	//float avg = 0.0;
+	//cout << "Dla ilu liczb rzeczywistych chcesz wyliczæ œredni¹??" << endl;
+	//cin >> n;
+	//for (int i = 0; i < n; i++) {
+	//	float number;
+	//	cout << "Podaj " << i+1 << " liczbe rzeczywist¹: " << endl;
+	//	cin >> number;
+	//	avg += number;
+	//}
+	//avg /= n;
+	//cout << "Œrednia z podanych liczb wynosi: " << avg << endl;
+	//Zadanie 13
+	//for (int i = 100; i >= 0; i--) {
+	//	cout << i << endl;
+	//}
+	//Zadanie 14
+	//int highest, num;
+	//for(int i = 0; i < 3; i++) {
+	//	cout << "Podaj " << i+1 << " liczbe ca³kowit¹: " << endl;
+	//	cin >> num;
+	//	highest = (i == 0) ? num : (num > highest ? num : highest);
+	//}
+	//cout << "Najwiêksza podana liczba to: " << highest << endl;
+	//Zadanie 15
+	//int n, m, result;
+	//cout << "Podaj ile liczb chcesz wylosowaæ: " << endl;
+	//cin >> n;
+	//cout << "Jaka ma byæ górna granica losowanych liczb (dolna to 0): " << endl;
+	//cin >> m;
+	//cout << "=========================================================\nWylosowane liczby\n=========================================================" << endl;
+	//for (int i = 0; i < n; i++) {
+	//	result = rand() % (m + 1);
+	//	cout << result << endl;
+	//}
+	//Zadanie 16
+	int lucky, generator, counter = 0;
+	bool valid = true;
+	while (valid) {
+		cout << "Podaj swoj¹ szczêœliw¹ liczbê [1,10]: " << endl;
+		cin >> lucky;
+		1 <= lucky <= 10 ? valid = false : valid = true;
+	}
+	cout << "=========================================================" << endl;
+	for (int i = 0; i < 10; i++) {
+		generator = rand() % 10 + 1;
+		cout << generator << endl;
+		generator == lucky ? counter++ : counter;
+	}
+	cout << "=========================================================" << endl;
+	cout << "Twoja szczêœliwa liczba wylosowa³a siê " << counter << " razy." << endl;
+}
