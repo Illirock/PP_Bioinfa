@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\student\\source\\repos\\Lab01_13_10_25\\",
+  "WorkspaceRootPath": "C:\\Users\\PAT\\source\\repos\\Illirock\\PP_Bioinfa\\Lab01_13_10_25\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A225FF9C-6289-4F70-8117-B663FEFF72B6}|Lab01_13_10_25\\Lab01_13_10_25.vcxproj|C:\\Users\\student\\source\\repos\\Lab01_13_10_25\\Lab01_13_10_25\\zad1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{A225FF9C-6289-4F70-8117-B663FEFF72B6}|Lab01_13_10_25\\Lab01_13_10_25.vcxproj|C:\\Users\\PAT\\source\\repos\\Illirock\\PP_Bioinfa\\Lab01_13_10_25\\Lab01_13_10_25\\zad1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A225FF9C-6289-4F70-8117-B663FEFF72B6}|Lab01_13_10_25\\Lab01_13_10_25.vcxproj|solutionrelative:Lab01_13_10_25\\zad1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -20,14 +20,18 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "zad1.cpp",
-              "DocumentMoniker": "C:\\Users\\student\\source\\repos\\Lab01_13_10_25\\Lab01_13_10_25\\zad1.cpp",
+              "DocumentMoniker": "C:\\Users\\PAT\\source\\repos\\Illirock\\PP_Bioinfa\\Lab01_13_10_25\\Lab01_13_10_25\\zad1.cpp",
               "RelativeDocumentMoniker": "Lab01_13_10_25\\zad1.cpp",
-              "ToolTip": "C:\\Users\\student\\source\\repos\\Lab01_13_10_25\\Lab01_13_10_25\\zad1.cpp",
+              "ToolTip": "C:\\Users\\PAT\\source\\repos\\Illirock\\PP_Bioinfa\\Lab01_13_10_25\\Lab01_13_10_25\\zad1.cpp",
               "RelativeToolTip": "Lab01_13_10_25\\zad1.cpp",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAABwAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAABBwBwAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-13T13:27:02.225Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }
