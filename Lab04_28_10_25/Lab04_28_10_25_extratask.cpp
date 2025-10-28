@@ -1,4 +1,6 @@
 ﻿#include <iostream>
+#include <cmath>
+#include <random>
 
 using namespace std;
 
@@ -17,6 +19,7 @@ int Max(int a, int b)
 	else
 		return b;
 }
+
 int AllDivisors(int n)
 {
 	cout << "All divisors of " << n << " are: ";
@@ -36,12 +39,10 @@ float Divide(float a, float b) { return a / b; }
 
 int Power(int base, int exponent)
 {
-	int result = 1;
-	for (int i = 0; i < exponent; i++)
-	{
-		result *= base;
-	}
-	return result;
+	if (exponent == 0)
+		return 1;
+	else
+		return base * Power(base, exponent - 1);
 }
 
 int Factorial(int n)
@@ -50,6 +51,24 @@ int Factorial(int n)
 		return 1;
 	else
 		return n * Factorial(n - 1);
+}
+
+int PowerWithMath(int n) {
+	return pow(2, n);
+}
+
+int Even(int n) {return n/2;}
+int Odd(int n) {return  (n-1)/2;}
+
+int LuckyNumber(int luckynumber) {
+	int counter = 0;
+
+	for (int i = 0; i < 10; i++) {
+		int number = rand() % 10 + 1;
+		cout << "Generated number: " << number << endl;
+		if (number == luckynumber) {counter++;}
+	}
+	return counter;
 }
 
 int main()
@@ -140,5 +159,25 @@ int main()
 	//	}
 	//}
 	// Zadanie 6
-
+	// int n;
+	// cout << "Enter an integer n to calculate 2^n: " << endl;
+	// cin >> n;
+	// cout << "2^" << n << " using recursion is: " << Power(2, n) << endl;
+	// cout << "2^" << n << " using math library is: " << PowerWithMath(n) << endl;
+	// Zadanie 7
+	int luckynumber;
+	cout << "Enter your lucky number (1-10): " << endl;
+	cin >> luckynumber;
+	int howmanytimes = LuckyNumber(luckynumber);
+	cout << "Your lucky number " << luckynumber << " appeared " <<  howmanytimes<< " times." << endl;
+	// Zadanie 8
+	// for (int i = 0; i < 100; i++) {
+	// 	if (i%2 == 0) {
+	// 		cout << Even(i) << endl;
+	// 	}
+	// 	else {
+	// 		cout << Odd(i) << endl;
+	// 	}
+	// }
+	return 0;
 }
