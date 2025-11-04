@@ -4,20 +4,20 @@
 
 using namespace std;
 
-int Min(int a, int b)
-{
-	if (a < b)
-		return a;
-	else
-		return b;
-}
-
-int Max(int a, int b)
+void Max(int a, int b)
 {
 	if (a > b)
 		return a;
 	else
 		return b;
+}
+
+void Max_Void(int a, int b)
+{
+	if (a > b)
+		cout << a << endl;
+	else
+		cout << b << endl;
 }
 
 int AllDivisors(int n)
@@ -77,8 +77,9 @@ int main()
 	//int num1, num2;
 	//cout << "Enter two integers: " << endl;
 	//cin >> num1 >> num2;
-	//cout << "Minimum: " << Min(num1, num2) << endl;
 	//cout << "Maximum: " << Max(num1, num2) << endl;
+	//cout << "Maximum (void function): ";
+	//Max_Void(num1, num2);
 	// Zadanie 2
 	//int number;
 	//bool validation = true;
