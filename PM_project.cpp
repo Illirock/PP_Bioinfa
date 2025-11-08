@@ -1,101 +1,111 @@
 ﻿#include <iostream>
 #include <stdlib.h>
-
+#include <limits>
 using namespace std;
 
-float FtoC(float degrees) { return (5.0 / 9.0) * (degrees - 32); }
-float FtoK(float degrees) { return (degrees - 32) * (5.0 / 9.0) + 273.15; }
-float CtoF(float degrees) { return degrees * (9.0 / 5.0) + 32; }
-float CtoK(float degrees) { return degrees + 273.15; }
-float KtoC(float degrees) { return degrees - 273.15; }
-float KtoF(float degrees) { return (degrees - 273.15) * (9.0 / 5.0) + 32; }
+float FtoC(float F) { return (F - 32.0) * 5.0 / 9.0; }
+float FtoK(float F) { return (F + 459.67) * 5.0 / 9.0; }
+float CtoF(float C) { return C * 9.0 / 5.0 + 32.0; }
+float CtoK(float C) { return C + 273.15; }
+float KtoC(float K) { return K - 273.15; }
+float KtoF(float K) { return K * 9.0 / 5.0 - 459.67; }
+
+float getF() { float t; cout << "Enter your temperature in F: "; cin >> t; return t; }
+float getC() { float t; cout << "Enter your temperature in C: "; cin >> t; return t; }
+float getK() { float t; cout << "Enter your temperature in K:"; cin >> t; return t; }
 
 int check(float temperature, char degreeType) {
-    switch(degreeType) {
+    switch (degreeType) {
         case 'F':
             if (temperature < -459.67) {
-                cout << "Error: Temperature below absolute zero" << endl;
+                cout << "Temperature is below absolute zero in F!" << endl;
                 return 1;
             }
             break;
         case 'C':
             if (temperature < -273.15) {
-                cout << "Error: Temperature below absolute zero" << endl;
+                cout << "Temperature is below absolute zero in C!" << endl;
                 return 1;
             }
             break;
         case 'K':
             if (temperature < 0) {
-                cout << "Error: Temperature below absolute zero" << endl;
+                cout << "Temperature is below absolute zero in K!" << endl;
                 return 1;
             }
             break;
         default:
-            cout << "Error: Incorrect Degree Type" << endl;
+            cout << "Invalid Temperature Type!" << endl;
             return 1;
     }
     return 0;
 }
 
+void showMenu() {
+    cout << "Temperature Converter Menu" << endl;
+    cout << "1 - Fahr -> Celsius\n";
+    cout << "2 - Fahr -> Kelvin\n";
+    cout << "3 - Celsius -> Fahr\n";
+    cout << "4 - Celsius -> Kelvin\n";
+    cout << "5 - Kelvin -> Celsius\n";
+    cout << "6 - Kelvin -> Fahr\n";
+    cout << "7 - end program\n";
+}
+
+
 int main()
 {
-    int respond;
+    int choise;
     float temperature;
-    char degreeType;
-    bool infinity = true;
 
-    while (infinity)
+    while (true)
     {
         system("cls");
-        cout << "1 - przelicz Fahr -> Celsius\n2 - przelicz Fahr->Kelwin\n3 - przelicz Celsius -> Fahr\n4 - przelicz Celsius -> Kelwin\n5 - przelicz Kelwin -> Celsius\n6 - przelicz Kelwin -> Fahr\n7 - zakończ działanie programu" << endl;
-        cin >> respond;
-        if (respond >=1 && respond <=6)
-        {
-            cout << "Enter temperature: " << endl;
-            cin >> temperature;
-            switch (respond) {
-                case 1: degreeType = 'F'; break;
-                case 2: degreeType = 'F'; break;
-                case 3: degreeType = 'C'; break;
-                case 4: degreeType = 'C'; break;
-                case 5: degreeType = 'K'; break;
-                case 6: degreeType = 'K'; break;
-            }
-            if (check(temperature, degreeType) == 0)
-            {
-                switch (respond) {
-                    case 1:
-                        temperature = FtoC(temperature);
-                        break;
-                    case 2:
-                        temperature = FtoK(temperature);
-                        break;
-                    case 3:
-                        temperature = CtoF(temperature);
-                        break;
-                    case 4:
-                        temperature = CtoK(temperature);
-                        break;
-                    case 5:
-                        temperature = KtoC(temperature);
-                        break;
-                    case 6:
-                        temperature = KtoF(temperature);
-                        break;
-                }
-                cout << "Converted temperature: " << temperature << endl;
-				cin.ignore();
-				cin.get();
-            }
-        }
-        else if (respond == 7)
-        {
-            infinity = false;
+        showMenu();
+        cin >> choise;
+
+        if (choise == 7) {
+            cout << "Thank you for using the temperature converter. Goodbye!" << endl;
             return 0;
         }
-        else
-        {
-            cout << "Error: Incorrect Value" << endl;
+
+        switch (choise) {
+            case 1:
+                temperature = getF();
+                if (check(temperature, 'F') == 0)
+                    cout << temperature << " F = " << FtoC(temperature) << " C" << endl;
+                break;
+            case 2:
+                temperature = getC();
+                if (check(temperature, 'F') == 0)
+                    cout << temperature << " F = " << FtoK(temperature) << " K" << endl;
+                break;
+            case 3:
+                temperature = getC();
+                if (check(temperature, 'C') == 0)
+                    cout << temperature << " C = " << CtoF(temperature) << " F" << endl;
+                break;
+            case 4:
+                temperature = getC();
+                if (check(temperature, 'C') == 0)
+                    cout << temperature << " C = " << CtoK(temperature) << " K" << endl;
+                break;
+            case 5:
+                temperature = getK();
+                if (check(temperature, 'K') == 0)
+                    cout << temperature << " K = " << KtoC(temperature) << " C" << endl;
+                break;
+            case 6:
+                temperature = getK();
+                if (check(temperature, 'K') == 0)
+                    cout << temperature << " K = " << KtoF(temperature) << " F" << endl;
+                break;
+            default:
+                cout << "Invalid Choice!" << endl;
+                continue;
         }
+        cout << "\nPress Enter to continue...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
     }
 }
