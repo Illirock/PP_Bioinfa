@@ -1,57 +1,10 @@
 ﻿#include <iostream>
-#include <stdlib.h>
 #include <limits>
+#include <stdlib.h>
+#include "PM_project_functions.cpp"
+#include "headerFile.h"
+
 using namespace std;
-
-float FtoC(float F) { return (F - 32.0) * 5.0 / 9.0; }
-float FtoK(float F) { return (F + 459.67) * 5.0 / 9.0; }
-float CtoF(float C) { return C * 9.0 / 5.0 + 32.0; }
-float CtoK(float C) { return C + 273.15; }
-float KtoC(float K) { return K - 273.15; }
-float KtoF(float K) { return K * 9.0 / 5.0 - 459.67; }
-
-float getF() { float t; cout << "Enter your temperature in F: "; cin >> t; return t; }
-float getC() { float t; cout << "Enter your temperature in C: "; cin >> t; return t; }
-float getK() { float t; cout << "Enter your temperature in K:"; cin >> t; return t; }
-
-int check(float temperature, char degreeType) {
-    switch (degreeType) {
-        case 'F':
-            if (temperature < -459.67) {
-                cout << "Temperature is below absolute zero in F!" << endl;
-                return 1;
-            }
-            break;
-        case 'C':
-            if (temperature < -273.15) {
-                cout << "Temperature is below absolute zero in C!" << endl;
-                return 1;
-            }
-            break;
-        case 'K':
-            if (temperature < 0) {
-                cout << "Temperature is below absolute zero in K!" << endl;
-                return 1;
-            }
-            break;
-        default:
-            cout << "Invalid Temperature Type!" << endl;
-            return 1;
-    }
-    return 0;
-}
-
-void showMenu() {
-    cout << "Temperature Converter Menu" << endl;
-    cout << "1 - Fahr -> Celsius\n";
-    cout << "2 - Fahr -> Kelvin\n";
-    cout << "3 - Celsius -> Fahr\n";
-    cout << "4 - Celsius -> Kelvin\n";
-    cout << "5 - Kelvin -> Celsius\n";
-    cout << "6 - Kelvin -> Fahr\n";
-    cout << "7 - end program\n";
-}
-
 
 int main()
 {
@@ -63,6 +16,7 @@ int main()
         system("cls");
         showMenu();
         cin >> choise;
+        system("cls");
 
         if (choise == 7) {
             cout << "Thank you for using the temperature converter. Goodbye!" << endl;
@@ -70,36 +24,66 @@ int main()
         }
 
         switch (choise) {
-            case 1:
+            case 1: {
                 temperature = getF();
-                if (check(temperature, 'F') == 0)
-                    cout << temperature << " F = " << FtoC(temperature) << " C" << endl;
+                if (check(temperature, 'F') == 0) {
+                    cout << temperature << "F = " << FtoC(temperature) << "C" << endl;
+                    SaveData(temperature, FtoC(temperature), 'F', 'C');
+                }
                 break;
-            case 2:
+            }
+            case 2: {
+                temperature = getF();
+                if (check(temperature, 'F') == 0) {
+                    cout << temperature << "F = " << FtoK(temperature) << "K" << endl;
+                    SaveData(temperature, FtoK(temperature), 'F', 'K');
+                }
+                break;
+            }
+            case 3: {
                 temperature = getC();
-                if (check(temperature, 'F') == 0)
-                    cout << temperature << " F = " << FtoK(temperature) << " K" << endl;
+                if (check(temperature, 'C') == 0) {
+                    cout << temperature << "C = " << CtoF(temperature) << "F" << endl;
+                    SaveData(temperature, CtoF(temperature), 'C', 'F');
+                }
                 break;
-            case 3:
+            }
+            case 4: {
                 temperature = getC();
-                if (check(temperature, 'C') == 0)
-                    cout << temperature << " C = " << CtoF(temperature) << " F" << endl;
+                if (check(temperature, 'C') == 0) {
+                    cout << temperature << "C = " << CtoK(temperature) << "K" << endl;
+                    SaveData(temperature, CtoK(temperature), 'C', 'K');
+                }
                 break;
-            case 4:
-                temperature = getC();
-                if (check(temperature, 'C') == 0)
-                    cout << temperature << " C = " << CtoK(temperature) << " K" << endl;
-                break;
-            case 5:
+            }
+            case 5: {
                 temperature = getK();
-                if (check(temperature, 'K') == 0)
-                    cout << temperature << " K = " << KtoC(temperature) << " C" << endl;
+                if (check(temperature, 'K') == 0) {
+                    cout << temperature << "K = " << KtoC(temperature) << "C" << endl;
+                    SaveData(temperature, KtoC(temperature), 'K', 'C');
+                }
                 break;
-            case 6:
+            }
+            case 6: {
                 temperature = getK();
-                if (check(temperature, 'K') == 0)
-                    cout << temperature << " K = " << KtoF(temperature) << " F" << endl;
+                if (check(temperature, 'K') == 0) {
+                    cout << temperature << "K = " << KtoF(temperature) << "F" << endl;
+                    SaveData(temperature, KtoF(temperature), 'K', 'F');
+                }
                 break;
+            }
+            case 8: {
+                int index = 0;
+                if (dataCounter == 0) {
+                    cout << "No conversion history available." << endl;
+                    break;
+                }
+                for (int i = 0; i < dataCounter; i += 2) {
+                    cout << "[" << index++ << "] " << temperaturesHistory[i] << degreeTypesHistory[i] << " = "
+                          << temperaturesHistory[i + 1] << degreeTypesHistory[i + 1] << endl;
+                }
+                break;
+            }
             default:
                 cout << "Invalid Choice!" << endl;
                 continue;
