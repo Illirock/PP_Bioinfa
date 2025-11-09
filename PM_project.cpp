@@ -85,7 +85,7 @@ int main()
                 break;
             }
             case 0: {
-                // fillHistoryWithRandomValues();
+                fillHistoryWithRandomValues();
                 break;
             }
             default:

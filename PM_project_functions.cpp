@@ -79,7 +79,7 @@ void showHistory() {
         cout << "No conversion history available." << endl;
     }
     else {
-        int choise, index = 0, counter = 0;
+        int choise, index = 1, counter = 0;
 
         cout << "Conversion History:" << endl;
         cout << "1 - Celsius -> Any" << endl;
@@ -142,7 +142,7 @@ void showFullHistory() {
         cout << "No conversion history available." << endl;
     }
     else {
-        int index = 0;
+        int index = 1;
         for (int i = 0; i < dataCounter; i += 2) {
             cout << "[" << index++ << "] " << temperaturesHistory[i] << degreeTypesHistory[i] << " = "
                  << temperaturesHistory[i + 1] << degreeTypesHistory[i + 1] << endl;
@@ -155,12 +155,9 @@ void deleteRecord() {
         cout << "No conversion history available." << endl;
     }
     else {
-        int index = 0, recordIndex;
-        for (int i = 0; i < dataCounter; i += 2) {
-            cout << "[" << index++ << "] " << temperaturesHistory[i] << degreeTypesHistory[i] << " = "
-                 << temperaturesHistory[i + 1] << degreeTypesHistory[i + 1] << endl;
-        }
+        showFullHistory();
 
+        int recordIndex;
         cout << "Enter the index of the record to delete: ";
         while (true) {
             cin >> recordIndex;
@@ -173,7 +170,7 @@ void deleteRecord() {
             }
         }
 
-        for (int i = recordIndex * 2; i < dataCounter - 2; i++) {
+        for (int i = (recordIndex * 2) - 2; i < dataCounter - 2; i++) {
             temperaturesHistory[i] = temperaturesHistory[i + 2];
             degreeTypesHistory[i] = degreeTypesHistory[i + 2];
         }
@@ -268,4 +265,72 @@ void modifyRecord() {
                 break;
         }
     }
+}
+
+void fillHistoryWithRandomValues() {
+    if (dataCounter >= 100) {
+        cout << "History is already full!" << endl;
+        return;
+    }
+
+    int recordsToAdd;
+    cout << "Enter the number of random records to add (max " << (100 - dataCounter) << "): ";
+    cin >> recordsToAdd;
+
+    if (cin.fail() || recordsToAdd < 1) {
+        cout << "Invalid number." << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return;
+    }
+
+    if (dataCounter + recordsToAdd > 100) {
+        int possibleToAdd = 100 - dataCounter;
+        cout << "Not enough space for " << recordsToAdd << " records. Only " << possibleToAdd << " can be added.\n";
+        cout << "Generate " << possibleToAdd << " instead? (y/n): ";
+        char choice;
+        cin >> choice;
+        if (choice == 'y' || choice == 'Y')
+            recordsToAdd = possibleToAdd;
+        else
+            return;
+    }
+
+    srand(time(nullptr));
+    for (int i = 0; i < recordsToAdd/2; i++) {
+        int randomTemperature;
+        double temperature, convertedTemperature;
+        char degreeType, convertedType;
+
+        int randomChoice = rand() % 3;
+        if (randomChoice == 0) degreeType = 'F';
+        else if (randomChoice == 1) degreeType = 'C';
+        else degreeType = 'K';
+
+        switch (degreeType) {
+            case 'F':
+                randomTemperature = rand() % 1000 - 459;
+                temperature = static_cast<float>(randomTemperature);
+                convertedType = (rand() % 2 == 0) ? 'C' : 'K';
+                convertedTemperature = (convertedType == 'C') ? FtoC(temperature) : FtoK(temperature);
+                break;
+            case 'C':
+                randomTemperature = rand() % 1000 - 273;
+                temperature = static_cast<float>(randomTemperature);
+                convertedType = (rand() % 2 == 0) ? 'F' : 'K';
+                convertedTemperature = (convertedType == 'F') ? CtoF(temperature) : CtoK(temperature);
+                break;
+            case 'K':
+                randomTemperature = rand() % 1000;
+                temperature = static_cast<float>(randomTemperature);
+                convertedType = (rand() % 2 == 0) ? 'C' : 'F';
+                convertedTemperature = (convertedType == 'C') ? KtoC(temperature) : KtoF(temperature);
+                break;
+            default:
+                continue;
+        }
+        saveData(temperature, convertedTemperature, degreeType, convertedType);
+    }
+
+    cout << "Random records added successfully." << endl;
 }
