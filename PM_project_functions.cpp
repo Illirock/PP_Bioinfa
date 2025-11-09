@@ -2,6 +2,7 @@
 #include <iostream>
 #include <limits>
 #include <stdlib.h>
+
 using namespace std;
 
 double temperaturesHistory[100];
