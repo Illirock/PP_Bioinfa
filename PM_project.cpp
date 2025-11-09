@@ -77,12 +77,15 @@ int main()
                 break;
             }
             case 8: {
+                deleteRecord();
                 break;
             }
             case 9: {
+                modifyRecord();
                 break;
             }
             case 0: {
+                // fillHistoryWithRandomValues();
                 break;
             }
             default:

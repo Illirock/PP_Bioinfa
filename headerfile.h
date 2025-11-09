@@ -23,6 +23,7 @@ void showMenu();
 void saveData(float temperature, float convertedTemperature, char degreeType, char convertedDegreeType);
 
 void showHistory();
+void showFullHistory();
 
 void deleteRecord();
 
