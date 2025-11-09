@@ -20,6 +20,14 @@ int check(float temperature, char degreeType);
 
 void showMenu();
 
-void SaveData(float temperature, float convertedTemperature, char degreeType, char convertedDegreeType);
+void saveData(float temperature, float convertedTemperature, char degreeType, char convertedDegreeType);
+
+void showHistory();
+
+void deleteRecord();
+
+void modifyRecord();
+
+void fillHistoryWithRandomValues();
 
 #endif

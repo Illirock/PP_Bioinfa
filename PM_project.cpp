@@ -18,7 +18,7 @@ int main()
         cin >> choise;
         system("cls");
 
-        if (choise == 7) {
+        if (choise == -1) {
             cout << "Thank you for using the temperature converter. Goodbye!" << endl;
             return 0;
         }
@@ -28,7 +28,7 @@ int main()
                 temperature = getF();
                 if (check(temperature, 'F') == 0) {
                     cout << temperature << "F = " << FtoC(temperature) << "C" << endl;
-                    SaveData(temperature, FtoC(temperature), 'F', 'C');
+                    saveData(temperature, FtoC(temperature), 'F', 'C');
                 }
                 break;
             }
@@ -36,7 +36,7 @@ int main()
                 temperature = getF();
                 if (check(temperature, 'F') == 0) {
                     cout << temperature << "F = " << FtoK(temperature) << "K" << endl;
-                    SaveData(temperature, FtoK(temperature), 'F', 'K');
+                    saveData(temperature, FtoK(temperature), 'F', 'K');
                 }
                 break;
             }
@@ -44,7 +44,7 @@ int main()
                 temperature = getC();
                 if (check(temperature, 'C') == 0) {
                     cout << temperature << "C = " << CtoF(temperature) << "F" << endl;
-                    SaveData(temperature, CtoF(temperature), 'C', 'F');
+                    saveData(temperature, CtoF(temperature), 'C', 'F');
                 }
                 break;
             }
@@ -52,7 +52,7 @@ int main()
                 temperature = getC();
                 if (check(temperature, 'C') == 0) {
                     cout << temperature << "C = " << CtoK(temperature) << "K" << endl;
-                    SaveData(temperature, CtoK(temperature), 'C', 'K');
+                    saveData(temperature, CtoK(temperature), 'C', 'K');
                 }
                 break;
             }
@@ -60,7 +60,7 @@ int main()
                 temperature = getK();
                 if (check(temperature, 'K') == 0) {
                     cout << temperature << "K = " << KtoC(temperature) << "C" << endl;
-                    SaveData(temperature, KtoC(temperature), 'K', 'C');
+                    saveData(temperature, KtoC(temperature), 'K', 'C');
                 }
                 break;
             }
@@ -68,25 +68,26 @@ int main()
                 temperature = getK();
                 if (check(temperature, 'K') == 0) {
                     cout << temperature << "K = " << KtoF(temperature) << "F" << endl;
-                    SaveData(temperature, KtoF(temperature), 'K', 'F');
+                    saveData(temperature, KtoF(temperature), 'K', 'F');
                 }
                 break;
             }
+            case 7: {
+                showHistory();
+                break;
+            }
             case 8: {
-                int index = 0;
-                if (dataCounter == 0) {
-                    cout << "No conversion history available." << endl;
-                    break;
-                }
-                for (int i = 0; i < dataCounter; i += 2) {
-                    cout << "[" << index++ << "] " << temperaturesHistory[i] << degreeTypesHistory[i] << " = "
-                          << temperaturesHistory[i + 1] << degreeTypesHistory[i + 1] << endl;
-                }
+                break;
+            }
+            case 9: {
+                break;
+            }
+            case 0: {
                 break;
             }
             default:
                 cout << "Invalid Choice!" << endl;
-                continue;
+                break;
         }
         cout << "\nPress Enter to continue...";
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
