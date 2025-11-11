@@ -10,6 +10,44 @@ double temperaturesHistory[100];
 char degreeTypesHistory[100];
 int dataCounter = 0;
 
+int choiseValidation(const string& prompt, void (*show)()) {
+    string choice;
+    while (true) {
+        cout << prompt;
+        cin >> choice;
+        try {
+            size_t pos;
+            int validatedChoice = stoi(choice, &pos);
+            if (pos != choice.length()) throw invalid_argument("Not an integer");
+            return validatedChoice;
+        }
+        catch (...) {
+            system("cls");
+            cout << "Invalid input type! Please enter an integer number.\n" << endl;
+            if (show) {
+                show();
+            }
+        }
+    }
+}
+float temperatureValidation(const string& prompt) {
+    string temperatureInput;
+    while (true) {
+        cout << prompt;
+        cin >> temperatureInput;
+        try {
+            size_t pos;
+            float validatedTemperature = stof(temperatureInput, &pos);
+            if (pos != temperatureInput.length()) throw invalid_argument("Not a float");
+            return validatedTemperature;
+        }
+        catch (...) {
+            system("cls");
+            cout << "Invalid input type! Please enter a numeric value.\n" << endl;
+        }
+    }
+}
+
 float FtoC(float F) { return (F - 32.0) * 5.0 / 9.0; }
 float FtoK(float F) { return (F + 459.67) * 5.0 / 9.0; }
 float CtoF(float C) { return C * 9.0 / 5.0 + 32.0; }
@@ -17,9 +55,9 @@ float CtoK(float C) { return C + 273.15; }
 float KtoC(float K) { return K - 273.15; }
 float KtoF(float K) { return K * 9.0 / 5.0 - 459.67; }
 
-float getF() { float t; cout << "Enter your temperature in F: "; cin >> t; return t; }
-float getC() { float t; cout << "Enter your temperature in C: "; cin >> t; return t; }
-float getK() { float t; cout << "Enter your temperature in K: "; cin >> t; return t; }
+float getF() { float t = temperatureValidation("Enter your temperature in F: "); return t; }
+float getC() { float t = temperatureValidation("Enter your temperature in C: "); return t; }
+float getK() { float t = temperatureValidation("Enter your temperature in K: "); return t; }
 
 int check(float temperature, char degreeType) {
     switch (degreeType) {
@@ -62,6 +100,13 @@ void showMenu() {
     cout << "0 - Fill Conversion History with Random Values" << endl;
     cout << "-1 - End Program" << endl;
 }
+void showHistoryMenu() {
+    cout << "Conversion History:" << endl;
+    cout << "1 - Celsius -> Any" << endl;
+    cout << "2 - Fahr -> Any" << endl;
+    cout << "3 - Kelvin -> Any" << endl;
+    cout << "4 - Show All" << endl;
+}
 
 void saveData(float temperature, float convertedTemperature, char degreeType, char convertedDegreeType) {
     if (dataCounter < 100) {
@@ -79,15 +124,10 @@ void showHistory() {
         cout << "No conversion history available." << endl;
     }
     else {
-        int choise, index = 1, counter = 0;
+        int index = 1, counter = 0;
 
-        cout << "Conversion History:" << endl;
-        cout << "1 - Celsius -> Any" << endl;
-        cout << "2 - Fahr -> Any" << endl;
-        cout << "3 - Kelvin -> Any" << endl;
-        cout << "4 - Show All" << endl;
-        cout << "Enter your choice: ";
-        cin >> choise;
+        showHistoryMenu();
+        int choise = choiseValidation("\nEnter your choice: ", showHistoryMenu);
         system("cls");
 
         switch (choise) {
@@ -202,6 +242,7 @@ void modifyRecord() {
         char newDegreeType, convertToType;
         cout << "What is the new temperature degree type? (F/C/K): ";
         cin >> newDegreeType;
+        newDegreeType = toupper(newDegreeType);
         switch (newDegreeType) {
             case 'F': {
                 newTemperature = getF();
@@ -210,6 +251,7 @@ void modifyRecord() {
                     degreeTypesHistory[recordIndex * 2] = 'F';
                     cout << "Convert to (C/K): ";
                     cin >> convertToType;
+                    convertToType = toupper(convertToType);
                     if (convertToType == 'C') {
                         temperaturesHistory[recordIndex * 2 + 1] = FtoC(newTemperature);
                         degreeTypesHistory[recordIndex * 2 + 1] = 'C';
@@ -229,6 +271,7 @@ void modifyRecord() {
                     degreeTypesHistory[recordIndex * 2] = 'C';
                     cout << "Convert to (F/K): ";
                     cin >> convertToType;
+                    convertToType = toupper(convertToType);
                     if (convertToType == 'F') {
                         temperaturesHistory[recordIndex * 2 + 1] = CtoF(newTemperature);
                         degreeTypesHistory[recordIndex * 2 + 1] = 'F';
@@ -248,6 +291,7 @@ void modifyRecord() {
                     degreeTypesHistory[recordIndex * 2] = 'K';
                     cout << "Convert to (F/C): ";
                     cin >> convertToType;
+                    convertToType = toupper(convertToType);
                     if (convertToType == 'F') {
                         temperaturesHistory[recordIndex * 2 + 1] = KtoF(newTemperature);
                         degreeTypesHistory[recordIndex * 2 + 1] = 'F';

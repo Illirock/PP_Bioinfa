@@ -8,14 +8,13 @@ using namespace std;
 
 int main()
 {
-    int choise;
     float temperature;
 
     while (true)
     {
         system("cls");
         showMenu();
-        cin >> choise;
+        int choise = choiseValidation("\nEnter your choice: ", showMenu);
         system("cls");
 
         if (choise == -1) {

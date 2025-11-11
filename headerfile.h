@@ -5,6 +5,9 @@ extern double temperaturesHistory[100];
 extern char degreeTypesHistory[100];
 extern int dataCounter;
 
+int choiseValidation();
+float temperatureValidation();
+
 float FtoC(float F);
 float FtoK(float F);
 float CtoF(float C);
@@ -19,6 +22,7 @@ float getK();
 int check(float temperature, char degreeType);
 
 void showMenu();
+void showHistoryMenu();
 
 void saveData(float temperature, float convertedTemperature, char degreeType, char convertedDegreeType);
 
