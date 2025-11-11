@@ -24,9 +24,7 @@ int choiseValidation(const string& prompt, void (*show)()) {
         catch (...) {
             system("cls");
             cout << "Invalid input type! Please enter an integer number.\n" << endl;
-            if (show) {
-                show();
-            }
+            show();
         }
     }
 }
