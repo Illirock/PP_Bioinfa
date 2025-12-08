@@ -119,7 +119,7 @@ int main()
 	int n;
 	while (validAnswer)
 	{
-		cout << "Podaj liczbe ca³kowit¹" << endl;
+		cout << "Podaj liczbe caï¿½kowitï¿½" << endl;
 		cin >> n;
 		if (0 <= n <= 100)
 		{
@@ -136,7 +136,7 @@ int main()
 	/*
 	int n;
 	int count = 0;
-	cout << "Podaj liczbe ca³kowit¹" << endl;
+	cout << "Podaj liczbe caï¿½kowitï¿½" << endl;
 	cin >> n;
 	for (int i = 1; i <= n; i++) {
 		if (n % i == 0) {
@@ -144,19 +144,19 @@ int main()
 			cout << "Liczba " << n << " jest podzielna przez " << i << endl;
 		}
 	}
-	cout << "Liczba dzielników liczby " << n << " wynosi: " << count << endl;
+	cout << "Liczba dzielnikï¿½w liczby " << n << " wynosi: " << count << endl;
 	*/
 	// Zadanie 11
 	/*
 	int a, b;
-	cout << "Podaj dwie liczby ca³kowite" << endl;
+	cout << "Podaj dwie liczby caï¿½kowite" << endl;
 	cin >> a >> b;
 	if (a > b) {
 		int temp = a;
 		a = b;
 		b = temp;
 	}
-	cout << "Liczby podzielne przez 3 z przedzia³u [" << a << "," << b << "] to: " << endl;
+	cout << "Liczby podzielne przez 3 z przedziaï¿½u [" << a << "," << b << "] to: " << endl;
 	for(int i = a; i <= b; i++) {
 		if (i % 3 == 0) {
 			cout << i << endl;
@@ -166,16 +166,16 @@ int main()
 	// Zadanie 12
 	//int n;
 	//float avg = 0.0;
-	//cout << "Dla ilu liczb rzeczywistych chcesz wyliczæ œredni¹??" << endl;
+	//cout << "Dla ilu liczb rzeczywistych chcesz wyliczï¿½ ï¿½redniï¿½??" << endl;
 	//cin >> n;
 	//for (int i = 0; i < n; i++) {
 	//	float number;
-	//	cout << "Podaj " << i+1 << " liczbe rzeczywist¹: " << endl;
+	//	cout << "Podaj " << i+1 << " liczbe rzeczywistï¿½: " << endl;
 	//	cin >> number;
 	//	avg += number;
 	//}
 	//avg /= n;
-	//cout << "Œrednia z podanych liczb wynosi: " << avg << endl;
+	//cout << "ï¿½rednia z podanych liczb wynosi: " << avg << endl;
 	//Zadanie 13
 	//for (int i = 100; i >= 0; i--) {
 	//	cout << i << endl;
@@ -183,16 +183,16 @@ int main()
 	//Zadanie 14
 	//int highest, num;
 	//for(int i = 0; i < 3; i++) {
-	//	cout << "Podaj " << i+1 << " liczbe ca³kowit¹: " << endl;
+	//	cout << "Podaj " << i+1 << " liczbe caï¿½kowitï¿½: " << endl;
 	//	cin >> num;
 	//	highest = (i == 0) ? num : (num > highest ? num : highest);
 	//}
-	//cout << "Najwiêksza podana liczba to: " << highest << endl;
+	//cout << "Najwiï¿½ksza podana liczba to: " << highest << endl;
 	//Zadanie 15
 	//int n, m, result;
-	//cout << "Podaj ile liczb chcesz wylosowaæ: " << endl;
+	//cout << "Podaj ile liczb chcesz wylosowaï¿½: " << endl;
 	//cin >> n;
-	//cout << "Jaka ma byæ górna granica losowanych liczb (dolna to 0): " << endl;
+	//cout << "Jaka ma byï¿½ gï¿½rna granica losowanych liczb (dolna to 0): " << endl;
 	//cin >> m;
 	//cout << "=========================================================\nWylosowane liczby\n=========================================================" << endl;
 	//for (int i = 0; i < n; i++) {
@@ -200,19 +200,19 @@ int main()
 	//	cout << result << endl;
 	//}
 	//Zadanie 16
-	int lucky, generator, counter = 0;
+	int lucky, counter = 0;
 	bool valid = true;
 	while (valid) {
-		cout << "Podaj swoj¹ szczêœliw¹ liczbê [1,10]: " << endl;
+		cout << "Podaj swojï¿½ szczï¿½liwï¿½ liczbï¿½ [1,10]: " << endl;
 		cin >> lucky;
-		1 <= lucky <= 10 ? valid = false : valid = true;
+		((1 <= lucky) && (lucky <= 10)) ? valid = false : valid = true;
 	}
 	cout << "=========================================================" << endl;
 	for (int i = 0; i < 10; i++) {
-		generator = rand() % 10 + 1;
+		int generator = rand() % 10 + 1;
 		cout << generator << endl;
 		generator == lucky ? counter++ : counter;
 	}
 	cout << "=========================================================" << endl;
-	cout << "Twoja szczêœliwa liczba wylosowa³a siê " << counter << " razy." << endl;
+	cout << "Twoja szczï¿½liwa liczba wylosowaï¿½a siï¿½ " << counter << " razy." << endl;
 }
