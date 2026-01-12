@@ -199,11 +199,12 @@ void deleteRecord() {
         cout << "Enter the index of the record to delete: ";
         while (true) {
             cin >> recordIndex;
-            if (cin.fail() || recordIndex < 0 || recordIndex >= dataCounter / 2) {
+            if (cin.fail() || recordIndex < 1 || recordIndex >= dataCounter / 2) {
                 cout << "Invalid index. Please enter a valid index: ";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             } else {
+                recordIndex --;
                 break;
             }
         }
@@ -228,11 +229,12 @@ void modifyRecord() {
         cout << "Enter the index of the record to modify: ";
         while (true) {
             cin >> recordIndex;
-            if (cin.fail() || recordIndex < 0 || recordIndex >= dataCounter / 2) {
+            if (cin.fail() || recordIndex < 1 || recordIndex >= dataCounter / 2) {
                 cout << "Invalid index. Please enter a valid index: ";
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             } else {
+                recordIndex --;
                 break;
             }
         }
