@@ -204,12 +204,11 @@ void deleteRecord() {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             } else {
-                recordIndex --;
                 break;
             }
         }
 
-        for (int i = (recordIndex * 2) - 2; i < dataCounter - 2; i++) {
+        for (int i = (recordIndex - 1) * 2; i < dataCounter - 2; i++) {
             temperaturesHistory[i] = temperaturesHistory[i + 2];
             degreeTypesHistory[i] = degreeTypesHistory[i + 2];
         }
